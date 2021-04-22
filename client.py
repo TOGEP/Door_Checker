@@ -17,15 +17,17 @@ sw_status = 1
 while True:
     try:
         sw_status = GPIO.input(18)
-            if sw_status == 0:
+        if sw_status == 0:
             # close
+            pass
 
-            else:
+        else:
             # open
             udp_client.sendto(b'OpenTheDoor', (target_ip, target_port))
             while sw_status == 1:
-            sw_status = GPIO.input(18)
-            time.sleep(1)
+                sw_status = GPIO.input(18)
+                time.sleep(1)
+        time.sleep(1)
 
     except:
         udp_client.close()
