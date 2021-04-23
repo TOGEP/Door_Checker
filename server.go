@@ -33,7 +33,7 @@ func main() {
 
 		go func() {
 			log.Printf("Reciving data: %s from %s", string(buf[:n]), addr.String())
-			err := exec.Command("osascript", "-s", "h", "-e", `display notification "ドアが開いたよ"`).Run()
+			err := exec.Command("osascript", "-s", "h", "-e", `display notification "ドアが開いたよ" sound name "Submarine.aiff"`).Run()
 			if err != nil {
 				log.Fatal(err)
 			}
