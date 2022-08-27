@@ -1,24 +1,24 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net"
 	"os"
-	"os/exec"
+
+	"github.com/gen2brain/beeep"
 )
 
 func main() {
 	udpAddr, err := net.ResolveUDPAddr("udp", ":5000")
 	if err != nil {
-		fmt.Println("Wrong Address")
+		log.Fatalln("Wrong Address")
 		return
 	}
 	updLn, err := net.ListenUDP("udp", udpAddr)
 
 	if err != nil {
 		log.Fatalln(err)
-		os.Exit(1)
+		return
 	}
 
 	buf := make([]byte, 1024)
@@ -33,7 +33,7 @@ func main() {
 
 		go func() {
 			log.Printf("Reciving data: %s from %s", string(buf[:n]), addr.String())
-			err := exec.Command("osascript", "-s", "h", "-e", `display notification "ドアが開いたよ" sound name "Submarine.aiff"`).Run()
+			err := beeep.Notify("DoorChecker", "ドアが開いたよ", "assets/warning.png")
 			if err != nil {
 				log.Fatal(err)
 			}
