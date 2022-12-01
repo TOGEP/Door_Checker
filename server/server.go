@@ -33,7 +33,11 @@ func main() {
 
 		go func() {
 			log.Printf("Reciving data: %s from %s", string(buf[:n]), addr.String())
-			err := beeep.Notify("DoorChecker", "ドアが開いたよ", "assets/warning.png")
+			err := beeep.Beep(beeep.DefaultFreq, beeep.DefaultDuration)
+			if err != nil {
+				log.Fatal(err)
+			}
+			err = beeep.Notify("DoorChecker", "ドアが開いたよ", "assets/warning.png")
 			if err != nil {
 				log.Fatal(err)
 			}
