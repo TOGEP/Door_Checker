@@ -3,12 +3,12 @@
 
 ## Requirement
 ### server
-Go1.16 or later
+- Go1.16 or later
 
 ### client
-python3
-開くとピカッ!!っとLEDライト
-> www.amazon.co.jp/dp/B01G017X66
+- python3
+- 開くとピカッ!!っとLEDライト
+  > www.amazon.co.jp/dp/B01G017X66
 
 ---
 ## Usage
